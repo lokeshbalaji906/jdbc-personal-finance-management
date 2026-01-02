@@ -1,25 +1,43 @@
 package com.demo.pfms.main;
 
+import java.time.LocalDate;
+
+import com.demo.pfms.dao.ExpenseDAO;
+import com.demo.pfms.dao.ExpenseDAOImpl;
+import com.demo.pfms.dao.IncomeDAO;
+import com.demo.pfms.dao.IncomeDAOImpl;
 import com.demo.pfms.dao.UserDAO;
 import com.demo.pfms.dao.UserDAOImpl;
+import com.demo.pfms.model.Expense;
+import com.demo.pfms.model.Income;
 import com.demo.pfms.model.User;
 
 public class PFMSApp {
 	public static void main(String[] args) {
 		
-		UserDAO userDAO = new UserDAOImpl();
+//		UserDAO userDAO = new UserDAOImpl();
+//		
+//		// Register user
+//		User user = new User("Balu", "b@gmail.com", "1234");
+//		boolean registered = userDAO.registerUser(user);
+//		System.out.println("User Registered: "+registered);
+//		
+//		// Login user
+//		User loggedInUser = userDAO.login("b@gmail.com", "1234");
+//		if(loggedInUser != null) {
+//			System.out.println("Login Successfull: "+loggedInUser.getName());
+//		} else {
+//			System.out.println("Invalid Credentials");
+//		}
 		
-		// Register user
-		User user = new User("Balu", "b@gmail.com", "1234");
-		boolean registered = userDAO.registerUser(user);
-		System.out.println("User Registered: "+registered);
+		IncomeDAO incomeDAO = new IncomeDAOImpl();
+		ExpenseDAO expenseDAO = new ExpenseDAOImpl();
 		
-		// Login user
-		User loggedInUser = userDAO.login("b@gmail.com", "1234");
-		if(loggedInUser != null) {
-			System.out.println("Login Successfull: "+loggedInUser.getName());
-		} else {
-			System.out.println("Invalid Credentials");
-		}
+		incomeDAO.addIncome(new Income(1, 50000, "Salary", LocalDate.now()));
+		incomeDAO.addIncome(new Income(1, 60000, "Salary", LocalDate.now()));
+		expenseDAO.addExpense(new Expense(1, 1500, "Food", "Lunch", LocalDate.now()));
+		expenseDAO.addExpense(new Expense(1, 2500, "Food", "Lunch", LocalDate.now()));
+		
+		System.out.println("Income and Expense added successfully");
 	}
 }
