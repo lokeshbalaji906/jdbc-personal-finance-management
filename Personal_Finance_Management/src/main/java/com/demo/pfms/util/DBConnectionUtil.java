@@ -11,7 +11,7 @@ public class DBConnectionUtil {
     private static final String USER = "root";
     private static final String PASSWORD = "rules";
     
-    static {
+    static {			// static block
     	try {
     		Class.forName("com.mysql.cj.jdbc.Driver");
     	}catch(Exception e) {
